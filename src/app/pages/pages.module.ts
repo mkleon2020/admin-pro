@@ -13,6 +13,7 @@ import { ProgressComponent } from './progress/progress.component';
 //temporal
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 
 
@@ -26,7 +27,8 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
         ProgressComponent,
         Graficas1Component,
         IncrementadorComponent,
-        GraficoDonaComponent
+        GraficoDonaComponent,
+        AccountSettingsComponent
         
     ],
     exports:[
