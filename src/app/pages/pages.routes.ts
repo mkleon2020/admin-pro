@@ -1,4 +1,6 @@
-import {RouterModule, Routes} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -7,12 +9,12 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 
-const pagesRoutes : Routes = [
+const routes : Routes = [
     {
-        path: '' , 
+        path: 'dashboard' , 
         component: PagesComponent,
         children: [
-            {path: 'dashboard' , component: DashboardComponent},
+            {path: '' , component: DashboardComponent},
            
             {path: 'progress' , component: ProgressComponent},
             {path: 'graficas1' , component: Graficas1Component},
@@ -24,4 +26,8 @@ const pagesRoutes : Routes = [
     }
 ];
 
-export const PAGES_ROUTES = RouterModule.forChild(pagesRoutes );
+@NgModule({
+    imports: [ RouterModule.forChild(routes) ],
+    exports: [ RouterModule ]
+})
+export class PagesRoutes {}

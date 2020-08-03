@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { PAGES_ROUTES } from './pages.routes';
+import { PagesRoutes } from './pages.routes';
 import { SharedModule } from '../shared/shared.module';
 import {FormsModule} from '@angular/forms';
 
@@ -44,7 +44,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     ],
     imports:[
         SharedModule,
-        PAGES_ROUTES,
+        PagesRoutes,
         FormsModule,
         ChartsModule
     ]
