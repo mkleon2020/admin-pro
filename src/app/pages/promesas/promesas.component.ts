@@ -15,6 +15,9 @@ export class PromesasComponent implements OnInit {
     .catch(error => console.log('Error en la promesa', error));
   }
   ngOnInit(): void {
+    this.getUsuarios().then(usuarios => {
+      console.log(usuarios);
+    })
   }
   contarTres(): Promise<boolean>{
 
@@ -37,6 +40,15 @@ export class PromesasComponent implements OnInit {
     
 
     
+  }
+
+  getUsuarios(){
+    return new Promise (resolve =>{
+      fetch('https://reqres.in/api/users')
+      .then(resp => resp.json())
+      .then(body => resolve(body.data));
+    });
+   
   }
 
 }
