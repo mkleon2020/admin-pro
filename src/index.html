@@ -6,11 +6,14 @@
     <title>Adminstylus</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id" content="506090423325-f2q509fc82tiobctrh5ftekcdcjl3dm4.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js"></script>
     <link rel="stylesheet" media="screen, print" href="assets/css/vendors.bundle.css">
     <link rel="stylesheet" media="screen, print" href="assets/css/app.bundle.css">
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+    <link rel="stylesheet" media="screen, print" href="assets/css/notifications/sweetalert2/sweetalert2.bundle.css">
     <link rel="mask-icon" href="assets/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
 </head>
 
@@ -36,7 +39,7 @@
          **/
         if (themeSettings.themeOptions) {
             classHolder.className = themeSettings.themeOptions;
-            console.log("%c✔ Theme settings loaded", "color: #148f32");
+            console.log("%c✔ Tema cargado", "color: #148f32");
         } else {
             console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
         }
@@ -72,8 +75,7 @@
 
     <script src="assets/js/vendors.bundle.js"></script>
     <script src="assets/js/app.bundle.js"></script>
-
-
+   
     
 </body>
 

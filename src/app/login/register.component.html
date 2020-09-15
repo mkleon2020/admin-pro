@@ -12,7 +12,7 @@
                     <span class="text-white opacity-50 ml-auto mr-2 hidden-sm-down">
                         Ya eres usuario?
                     </span>
-                    <a href="page_login.html" class="btn-link text-white ml-auto ml-sm-0">
+                    <a routerLink="/login" class="btn-link text-white ml-auto ml-sm-0">
                         Login
                     </a>
                 </div>
@@ -31,30 +31,59 @@
                         <div class="col-xl-6 ml-auto mr-auto">
                             <div class="card p-4 rounded-plus bg-faded">
 
-                                <form id="js-login" novalidate="" action="intel_analytics_dashboard.html">
+                                <form id="js-login" novalidate="" 
+                                autocomplete="off"
+                                [formGroup]="registerForm"
+                                (ngSubmit)="crearUsuario()">
                                     <div class="form-group row">
                                         <label class="col-xl-12 form-label" for="fname">Nombre y Apellido</label>
-                                        <div class="col-6 pr-1">
-                                            <input type="text" id="fname" class="form-control" placeholder="Nombre" required>
-                                            <div class="invalid-feedback">No, you missed this one.</div>
+                                        <div class="col-12 pr-1">
+                                            <input type="text" id="fname"   class="form-control"
+                                            formControlName="nombre"
+                                             placeholder="Nombre">
+                                            <div class="alert alert-danger" *ngIf="campoNovalido('nombre')" role="alert">
+                                                <strong>Error</strong> El nombre es obligatorio
+                                            </div>
                                         </div>
-                                        <div class="col-6 pl-1">
-                                            <input type="text" id="lname" class="form-control" placeholder="Apellido" required>
-                                            <div class="invalid-feedback">No, you missed this one.</div>
-                                        </div>
+                                       
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label" for="emailverify">Correo</label>
-                                        <input type="email" id="emailverify" class="form-control" placeholder="correo" required>
-                                        <div class="invalid-feedback">No, you missed this one.</div>
+                                        <input type="email"  class="form-control"
+                                            formControlName="email"
+                                            placeholder="correo">
+                                            <div class="alert alert-danger" *ngIf="campoNovalido('email')" role="alert">
+                                                <strong>Error</strong> El email es obligatorio
+                                            </div>
                                         <div class="help-block">Your email will also be your username</div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="userpassword">Clave: </label>
-                                        <input type="password" id="userpassword" class="form-control" placeholder="minimm 8 characters" required>
-                                        <div class="invalid-feedback">Sorry, you missed this one.</div>
+                                        <label class="form-label" for="userpassword">Password: </label>
+                                        <input type="password"  class="form-control" 
+                                            formControlName="password"
+                                            placeholder="minimm 8 characters" >
+                                      
                                         <div class="help-block">Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.</div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="userpassword">Confirmar Password: </label>
+                                        <input type="password"  class="form-control" 
+                                            formControlName="password2"
+                                            placeholder="Confirmar la password" >
+                                            <div class="alert alert-danger" *ngIf="contrasenasNovalidas()" role="alert">
+                                                <strong>Error</strong> Las claves deben ser iguales
+                                            </div>
+                                    </div>
+                                    <div class="form-group demo">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="terms"   formControlName="terminos">
+                                            <label class="custom-control-label" for="terms"> I agree to terms & conditions</label>
+                                            <div class="alert alert-danger" *ngIf="aceptaTerminos()" role="alert">
+                                                <strong>Debe aceptar los terminos</strong> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
 
                                     <div class="row no-gutters">
                                         <div class="col-md-4 ml-auto text-right">
@@ -66,6 +95,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="position-absolute pos-bottom pos-left pos-right p-3 text-center text-white">
                     2020 © SmartAdmin by&nbsp;<a href='https://www.gotbootstrap.com' class='text-white opacity-40 fw-500' title='gotbootstrap.com' target='_blank'>gotbootstrap.com</a>
                 </div>
@@ -73,3 +103,5 @@
         </div>
     </div>
 </div>
+
+
