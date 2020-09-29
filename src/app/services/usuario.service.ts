@@ -6,6 +6,7 @@ import {RegisterForm} from '../interfaces/register-form.interface';
 import {LoginForm} from '../interfaces/login-form.interface';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/usuario.model';
 
 const base_url = environment.base_url;
 declare const gapi:any;
@@ -14,9 +15,19 @@ declare const gapi:any;
 })
 export class UsuarioService {
   public auth2: any;
-  constructor(private http: HttpClient, private router: Router,
+  public usuario: Usuario;
+  constructor(private http: HttpClient, 
+              private router: Router,
               private ngZone: NgZone) {
     this.googleInit();
+   }
+
+   get token ():string {
+     return  localStorage.getItem('token') || '';
+   }
+
+   get uid(): string{
+     return this.usuario.uid || '';
    }
 
   googleInit(){
@@ -42,17 +53,22 @@ export class UsuarioService {
   }
 
   validarToken(): Observable<boolean>{
-    const token = localStorage.getItem('token') || '';
 
    return this.http.get(`${base_url}/login/renew`,{
       headers:{
-        'token': token,
+        'token': this.token,
       }
     }).pipe(
-      tap((resp:any) => {
+      map((resp:any) => {
+        // aqui de destructura los datos de la respuesta 
+        // y se crea una nueva instancia todo esto se hace pa obtener
+        // todos los datos ya almacenados del lado de cliente
+        // console.log(resp)
+        const {email,nombre,estado,google,role,img='',uid} = resp.usuario;
+        this.usuario = new Usuario(nombre,email,'',estado,img,google,role,uid);
         localStorage.setItem('token', resp.token);
+        return true;
       }),
-      map(resp => true),
       catchError(error => of(false))
     );
   }
@@ -65,6 +81,19 @@ export class UsuarioService {
         })
       )
   }
+
+  updateProfile(data:{email: string, nombre:string, role:string}){
+    data = {
+      ...data,
+      role:this.usuario.role
+    }
+    return this.http.put(`${base_url}/usuarios/${this.uid}`,data, {
+      headers:{
+        'token': this.token,
+      }
+    });
+  }
+
   login(formData: LoginForm){
     return this.http.post(`${base_url}/login`,formData)
         .pipe(

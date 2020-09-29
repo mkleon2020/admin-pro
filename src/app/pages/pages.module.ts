@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { PagesRoutes } from './pages.routes';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 //Modulos
 import { ComponentsModule } from '../components/components.module';
@@ -19,6 +19,8 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -39,6 +41,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
         AccountSettingsComponent,
         PromesasComponent,
         RxjsComponent,
+        PerfilComponent,
         
         
     ],
@@ -50,9 +53,11 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     imports:[
         SharedModule,
         PagesRoutes,
+        ReactiveFormsModule,
         FormsModule,
         ChartsModule,
-        ComponentsModule
+        ComponentsModule,
+        CommonModule
 
     ]
 

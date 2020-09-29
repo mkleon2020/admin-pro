@@ -18,14 +18,14 @@
             </div>
         </div>
         <div class="info-card">
-            <img src="assets/img/demo/avatars/avatar-admin.png" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+            <img [src]="usuario.imageUrl" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
             <div class="info-card-text">
                 <a href="#" class="d-flex align-items-center text-white">
                     <span class="text-truncate text-truncate-sm d-inline-block">
-                          Dr. Maikol Leon
+                        {{usuario.nombre}}
                       </span>
                 </a>
-                <span class="d-inline-block text-truncate text-truncate-sm">Toronto, Canada</span>
+                <!-- <span class="d-inline-block text-truncate text-truncate-sm">Toronto, Canada</span> -->
             </div>
             <img src="assets/img/card-backgrounds/cover-2-lg.png" class="cover" alt="cover">
             <a href="#" onclick="return false;" class="pull-trigger-btn" data-action="toggle" data-class="list-filter-active" data-target=".page-sidebar" data-focus="nav_filter_input">
@@ -34,57 +34,51 @@
         </div>
         <!-- MENU -->
         <ul id="js-nav-menu" class="nav-menu">
-            <li routerLinkActive="active" *ngFor=" let menu of _sidebar.menu">
+            <div class="accordion" id="accordionExample">
+                <div class="card"  *ngFor=" let menu of _sidebar.menu let i = index" >
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <i [class]="menu.icono"></i>
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"  data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        {{menu.titulo}}
+                        {{i}}
+                      </button>
+                    </h2>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                       <div class="" *ngFor="let submenu of menu.submenu">
+                        <a  [routerLink]="[submenu.url]" title="{{submenu.titulo}}">
+                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">{{submenu.titulo}}</span>
+                        </a>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+          
+            <li  *ngFor=" let menu of _sidebar.menu">
                 <a title="Application Intel" data-filter-tags="application intel">
                     <i [class]="menu.icono"></i>
                     <span class="nav-link-text" data-i18n="nav.application_intel">{{menu.titulo}}</span>
                 </a>
                 <ul>
-                    <li routerLinkActive="active" *ngFor="let submenu of menu.submenu">
+                    <li  *ngFor="let submenu of menu.submenu">
                         <a  [routerLink]="[submenu.url]" title="{{submenu.titulo}}" data-filter-tags="application intel analytics dashboard">
                             <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">{{submenu.titulo}}</span>
                         </a>
                     </li>
                 </ul>
             </li>
-
             <li>
                 <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                     <i class="fal fa-cog"></i>
                     <span class="nav-link-text" data-i18n="nav.theme_settings">Theme Settings</span>
                 </a>
-                <ul>
-                    <li>
-                        <a href="settings_how_it_works.html" title="How it works" data-filter-tags="theme settings how it works">
-                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">How it works</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="settings_layout_options.html" title="Layout Options" data-filter-tags="theme settings layout options">
-                            <span class="nav-link-text" data-i18n="nav.theme_settings_layout_options">Layout Options</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="settings_skin_options.html" title="Skin Options" data-filter-tags="theme settings skin options">
-                            <span class="nav-link-text" data-i18n="nav.theme_settings_skin_options">Skin Options</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="settings_saving_db.html" title="Saving to Database" data-filter-tags="theme settings saving to database">
-                            <span class="nav-link-text" data-i18n="nav.theme_settings_saving_to_database">Saving to Database</span>
-                        </a>
-                    </li>
-                </ul>
+              
             </li>
-            <li>
-                <a href="#" title="Package Info" data-filter-tags="package info">
-                    <i class="fal fa-tag"></i>
-                    <span class="nav-link-text" data-i18n="nav.package_info">Package Info</span>
-                </a>
-
-            </li>
-
-
         </ul>
         <div class="filter-message js-filter-message bg-success-600"></div>
     </nav>
@@ -115,3 +109,5 @@
     </div>
     <!-- END NAV FOOTER -->
 </aside>
+<script src="../../../assets/js/vendors.bundle.js"></script>
+<script src="../../../assets/js/app.bundle.js"></script>

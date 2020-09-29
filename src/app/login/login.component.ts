@@ -39,10 +39,10 @@ export class LoginComponent implements OnInit{
         }else{
           localStorage.removeItem('email');
         }
-      //exitoso mover al dasboar
-      this.ngZone.run(() => {
+
+        //exitoso mover al dasboar
         this.router.navigateByUrl('/');
-      });
+    
       }, (err) => {
         Swal.fire('Error', err.error.msg, 'error');
       });
@@ -74,8 +74,10 @@ export class LoginComponent implements OnInit{
           this.usuarioService.loginGoogle(id_token)
           .subscribe(
             resp => {
-              //exitoso mover al dasboar
-              this.router.navigateByUrl('/');
+               //exitoso mover al dasboar
+              this.ngZone.run(() => {
+                this.router.navigateByUrl('/');
+              });
             }
           );
         

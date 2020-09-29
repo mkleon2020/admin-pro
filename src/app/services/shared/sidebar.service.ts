@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class SidebarService {
 
   menu: any = [
+   
     {
       titulo: 'Principal',
       icono: 'fal fa-info-circle',
@@ -16,8 +17,15 @@ export class SidebarService {
         {titulo: 'Promesas', url: 'promesas'},
         {titulo: 'Rxjs', url: 'rxjs'}
       ]
+    },
+    {
+      titulo: 'Usuario',
+      icono: 'fal fa-user',
+      submenu: [
+        {titulo: 'Perfil', url: 'perfil'},
+       
+      ]
     }
   ];
-
   constructor() { }
 }
